@@ -56,8 +56,8 @@ export default function ChatWidget() {
   });
   const [isResizing, setIsResizing] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const chatRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme } = useTheme();
 
   
@@ -170,7 +170,7 @@ export default function ChatWidget() {
   }, [messages, isTyping, isOpen]);
 
   useEffect(() => {
-    audioRef.current = new Audio("/notification.mp3");
+    audioRef.current = new Audio("/notificationsound1");
     audioRef.current.volume = 0.5;
   }, []);
 
