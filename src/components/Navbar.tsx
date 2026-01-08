@@ -81,20 +81,93 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
-    { name: "Home", href: "/#home", section: "home" },
-    { name: "About", href: "/#about", section: "about" },
-    { name: "Skills", href: "/#skills", section: "skills" },
-    { name: "Services", href: "/#services", section: "services" },
-    { name: "Projects", href: "/projects", section: "projects" },
-    { name: "Experience", href: "/#experience", section: "experience" },
-    { name: "Contact", href: "/#contact", section: "contact" },
+    {
+      name: "Home",
+      href: "/#home",
+      section: "home",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      )
+    },
+    {
+      name: "About",
+      href: "/#about",
+      section: "about",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+      )
+    },
+    {
+      name: "Experience",
+      href: "/#experience",
+      section: "experience",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+        </svg>
+      )
+    },
+    {
+      name: "Skills",
+      href: "/#skills",
+      section: "skills",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+        </svg>
+      )
+    },
+    {
+      name: "Projects",
+      href: "/projects",
+      section: "projects",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+        </svg>
+      )
+    },
+    {
+      name: "Achievement",
+      href: "/#achievement",
+      section: "achievement",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
+        </svg>
+      )
+    },
+    {
+      name: "Services",
+      href: "/#services",
+      section: "services",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+        </svg>
+      )
+    },
+    {
+      name: "Contact",
+      href: "/#contact",
+      section: "contact",
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+      )
+    },
   ];
 
   // Track active section on homepage using Intersection Observer
   useEffect(() => {
     if (!isHomePage) return;
 
-    const sections = ["home", "about", "skills", "services", "projects", "experience", "contact"];
+    const sections = ["home", "about", "experience", "skills", "projects", "achievement", "services", "contact"];
 
     const observerOptions = {
       root: null,
@@ -149,8 +222,8 @@ export default function Navbar() {
       <div
         className="absolute inset-0 backdrop-blur-md"
         style={{
-          backgroundColor: theme === "dark" ? "rgba(10, 10, 10, 0.8)" : "rgba(255, 255, 255, 0.8)",
-          borderBottom: `1px solid ${theme === "dark" ? "rgba(38, 38, 38, 0.5)" : "rgba(229, 229, 229, 0.5)"}`,
+          backgroundColor: theme === "dark" ? "rgba(10, 10, 10, 0.8)" : "rgba(250, 248, 245, 0.85)",
+          borderBottom: `1px solid ${theme === "dark" ? "rgba(38, 38, 38, 0.5)" : "rgba(232, 228, 220, 0.6)"}`,
         }}
       ></div>
 
@@ -165,34 +238,89 @@ export default function Navbar() {
             Izzat<span style={{ color: theme === "dark" ? "#737373" : "#a3a3a3" }}>.</span>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+          {/* Desktop Navigation - Right aligned with Icons */}
+          <div
+            className="hidden md:flex items-center gap-0.5 px-1.5 py-1 rounded-2xl border"
+            style={{
+              backgroundColor: theme === "dark" ? "rgba(10, 10, 10, 0.6)" : "rgba(250, 248, 245, 0.8)",
+              borderColor: theme === "dark" ? "rgba(38, 38, 38, 0.8)" : "rgba(232, 228, 220, 0.8)",
+            }}
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={getHref(link.href)}
-                className="text-sm tracking-widest uppercase transition-colors duration-300 relative"
+                className="relative p-2 rounded-xl transition-all duration-300 group"
                 style={{
                   color: isActive(link)
-                    ? (theme === "dark" ? "#ffffff" : "#171717")
-                    : (theme === "dark" ? "#a3a3a3" : "#525252"),
+                    ? (theme === "dark" ? "#ffffff" : "#2d2a26")
+                    : (theme === "dark" ? "#525252" : "#9c958a"),
+                  backgroundColor: isActive(link)
+                    ? (theme === "dark" ? "rgba(255, 255, 255, 0.08)" : "rgba(45, 42, 38, 0.08)")
+                    : "transparent",
                 }}
+                title={link.name}
               >
-                {link.name}
-                {/* Active indicator dot */}
+                <span className="transition-transform duration-300 group-hover:scale-110 block">
+                  {link.icon}
+                </span>
+                {/* Tooltip */}
+                <span
+                  className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-xs font-medium tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none scale-95 group-hover:scale-100"
+                  style={{
+                    backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26",
+                    color: theme === "dark" ? "#0a0a0a" : "#faf8f5",
+                  }}
+                >
+                  {link.name}
+                </span>
+                {/* Active indicator */}
                 {isActive(link) && (
                   <span
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                    style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#171717" }}
-                  ></span>
+                    className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                    style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26" }}
+                  />
                 )}
               </Link>
             ))}
-          </div>
 
-          {/* Right side - Theme Toggle */}
-          <div className="hidden md:flex items-center">
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} size="small" />
+            {/* Divider */}
+            <div
+              className="w-px h-5 mx-1"
+              style={{ backgroundColor: theme === "dark" ? "rgba(82, 82, 82, 0.5)" : "rgba(156, 149, 138, 0.5)" }}
+            />
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="relative p-2 rounded-xl transition-all duration-300 group"
+              style={{
+                color: theme === "dark" ? "#525252" : "#9c958a",
+              }}
+              title={theme === "dark" ? "Light Mode" : "Dark Mode"}
+            >
+              <span className="transition-transform duration-300 group-hover:scale-110 block">
+                {theme === "dark" ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                  </svg>
+                )}
+              </span>
+              {/* Tooltip */}
+              <span
+                className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-xs font-medium tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none scale-95 group-hover:scale-100"
+                style={{
+                  backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26",
+                  color: theme === "dark" ? "#0a0a0a" : "#faf8f5",
+                }}
+              >
+                {theme === "dark" ? "Light" : "Dark"}
+              </span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -225,29 +353,27 @@ export default function Navbar() {
           }`}
         >
           <div
-            className="flex flex-col gap-4 pt-4"
-            style={{ borderTop: `1px solid ${theme === "dark" ? "rgba(38, 38, 38, 0.5)" : "rgba(229, 229, 229, 0.5)"}` }}
+            className="flex flex-col gap-1 pt-4"
+            style={{ borderTop: `1px solid ${theme === "dark" ? "rgba(38, 38, 38, 0.5)" : "rgba(232, 228, 220, 0.8)"}` }}
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={getHref(link.href)}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-sm tracking-widest uppercase transition-colors duration-300 flex items-center gap-2"
+                className="text-sm tracking-wide transition-all duration-300 flex items-center gap-3 py-2 px-3 rounded-xl"
                 style={{
                   color: isActive(link)
-                    ? (theme === "dark" ? "#ffffff" : "#171717")
-                    : (theme === "dark" ? "#a3a3a3" : "#525252"),
+                    ? (theme === "dark" ? "#ffffff" : "#2d2a26")
+                    : (theme === "dark" ? "#737373" : "#9c958a"),
+                  backgroundColor: isActive(link)
+                    ? (theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(45, 42, 38, 0.05)")
+                    : "transparent",
                 }}
               >
-                {/* Active indicator for mobile */}
-                {isActive(link) && (
-                  <span
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#171717" }}
-                  ></span>
-                )}
-                {link.name}
+                {/* Icon */}
+                <span className="w-5 h-5 flex-shrink-0">{link.icon}</span>
+                <span className="font-medium">{link.name}</span>
               </Link>
             ))}
 

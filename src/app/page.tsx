@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import Achievement from "@/components/Achievement";
 import Contact from "@/components/Contact";
 import ChatWidget from "@/components/ChatWidget";
 import SpotifyWidget from "@/components/SpotifyWidget";
@@ -173,17 +174,20 @@ export default function Home() {
       {/* About Section */}
       <About />
 
+      {/* Experience Section */}
+      <Experience />
+
       {/* Skills Section */}
       <Skills />
-
-      {/* Services Section */}
-      <Services />
 
       {/* Projects Section */}
       <Projects />
 
-      {/* Experience Section */}
-      <Experience />
+      {/* Achievement Section */}
+      <Achievement />
+
+      {/* Services Section */}
+      <Services />
 
       {/* Contact Section */}
       <Contact />
