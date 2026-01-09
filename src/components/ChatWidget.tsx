@@ -3325,34 +3325,15 @@ export default function ChatWidget() {
             setIsOpen(false);
           } else {
             openChat();
-            setUnreadCount(0); // Clear unread when opening
+            setUnreadCount(0);
           }
         }}
-        className={`fixed z-50 rounded-full flex items-center justify-center transition-all duration-300 ease-out group ${
+        className={`chat-fab fixed z-50 rounded-full flex items-center justify-center ${
           isMobile ? "bottom-4 right-4 w-12 h-12" : "bottom-6 right-6 w-14 h-14"
         } ${isOpen && isMobile ? "opacity-0 pointer-events-none" : "opacity-100"}`}
         style={{
           backgroundColor: theme === "dark" ? "#ffffff" : "#000000",
           boxShadow: theme === "dark" ? "0 4px 20px rgba(255,255,255,0.2)" : "0 4px 20px rgba(0,0,0,0.3)",
-          transform: "scale(1)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.boxShadow = theme === "dark"
-            ? "0 8px 30px rgba(255,255,255,0.3)"
-            : "0 8px 30px rgba(0,0,0,0.4)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = theme === "dark"
-            ? "0 4px 20px rgba(255,255,255,0.2)"
-            : "0 4px 20px rgba(0,0,0,0.3)";
-        }}
-        onMouseDown={(e) => {
-          e.currentTarget.style.transform = "scale(0.95)";
-        }}
-        onMouseUp={(e) => {
-          e.currentTarget.style.transform = "scale(1.1)";
         }}
       >
         {/* Unread badge */}
@@ -3366,7 +3347,7 @@ export default function ChatWidget() {
         )}
         {/* Icon */}
         <svg
-          className={`${isMobile ? "w-5 h-5" : "w-6 h-6"} transition-transform duration-300 ease-out group-hover:rotate-12`}
+          className={`${isMobile ? "w-5 h-5" : "w-6 h-6"}`}
           fill="none"
           stroke={theme === "dark" ? "#000000" : "#ffffff"}
           viewBox="0 0 24 24"
