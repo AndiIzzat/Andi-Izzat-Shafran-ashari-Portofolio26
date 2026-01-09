@@ -401,15 +401,34 @@ html.light .shadow-lg {
   transform: scale(1) rotate(0deg);
 }
 
+/* Dropdown button - stable hover with no glitch */
+.dropdown-btn {
+  position: relative;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Invisible larger hit area to prevent hover glitching */
+.dropdown-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 8px;
+}
+
 /* Dropdown dots - smooth spread on hover */
+.dropdown-dot-1, .dropdown-dot-2, .dropdown-dot-3 {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  pointer-events: none;
+}
+
 .dropdown-btn:hover .dropdown-dot-1 {
   transform: translateY(-2px);
 }
+
 .dropdown-btn:hover .dropdown-dot-3 {
   transform: translateY(2px);
-}
-.dropdown-dot-1, .dropdown-dot-2, .dropdown-dot-3 {
-  transition: transform 0.3s ease-out;
 }
 
 /* Close button - smooth rotation */
@@ -576,15 +595,17 @@ html.light ::selection {
   animation: sparkle 1.5s ease-in-out infinite;
 }
 
-/* Chat FAB button - stable hover animation */
+/* Chat FAB button - smooth hover animation */
 .chat-fab {
   transform: translateZ(0);
   backface-visibility: hidden;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
-.chat-fab::before {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
+.chat-fab:hover {
+  transform: translateZ(0) scale(1.08);
+}
+
+.chat-fab:active {
+  transform: translateZ(0) scale(0.95);
 }
