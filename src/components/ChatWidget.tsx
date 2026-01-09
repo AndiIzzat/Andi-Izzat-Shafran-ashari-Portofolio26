@@ -3328,12 +3328,31 @@ export default function ChatWidget() {
             setUnreadCount(0); // Clear unread when opening
           }
         }}
-        className={`fixed z-50 rounded-full flex items-center justify-center transition-all duration-300 ease-out hover:scale-105 active:scale-95 group ${
+        className={`fixed z-50 rounded-full flex items-center justify-center transition-all duration-300 ease-out group ${
           isMobile ? "bottom-4 right-4 w-12 h-12" : "bottom-6 right-6 w-14 h-14"
         } ${isOpen && isMobile ? "opacity-0 pointer-events-none" : "opacity-100"}`}
         style={{
           backgroundColor: theme === "dark" ? "#ffffff" : "#000000",
-          boxShadow: theme === "dark" ? "0 4px 20px rgba(255,255,255,0.2)" : "0 4px 20px rgba(0,0,0,0.3)"
+          boxShadow: theme === "dark" ? "0 4px 20px rgba(255,255,255,0.2)" : "0 4px 20px rgba(0,0,0,0.3)",
+          transform: "scale(1)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "scale(1.1)";
+          e.currentTarget.style.boxShadow = theme === "dark"
+            ? "0 8px 30px rgba(255,255,255,0.3)"
+            : "0 8px 30px rgba(0,0,0,0.4)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "scale(1)";
+          e.currentTarget.style.boxShadow = theme === "dark"
+            ? "0 4px 20px rgba(255,255,255,0.2)"
+            : "0 4px 20px rgba(0,0,0,0.3)";
+        }}
+        onMouseDown={(e) => {
+          e.currentTarget.style.transform = "scale(0.95)";
+        }}
+        onMouseUp={(e) => {
+          e.currentTarget.style.transform = "scale(1.1)";
         }}
       >
         {/* Unread badge */}
@@ -3345,40 +3364,19 @@ export default function ChatWidget() {
             {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
-        {isOpen ? (
-          <>
-            {/* Default X icon */}
-            <svg className={`${isMobile ? "w-5 h-5" : "w-6 h-6"} absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:scale-75`} fill="none" stroke={theme === "dark" ? "#000000" : "#ffffff"} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            {/* Hover - Chevron down icon */}
-            <svg className={`${isMobile ? "w-5 h-5" : "w-6 h-6"} absolute transition-all duration-300 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100`} fill="none" stroke={theme === "dark" ? "#000000" : "#ffffff"} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-            </svg>
-          </>
-        ) : (
-          <>
-            {/* Default chat icon */}
-            <svg className={`${isMobile ? "w-5 h-5" : "w-6 h-6"} absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:scale-75`} fill="none" stroke={theme === "dark" ? "#000000" : "#ffffff"} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            {/* Hover - Bot/Robot icon */}
-            <svg className={`${isMobile ? "w-5 h-5" : "w-6 h-6"} absolute transition-all duration-300 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100`} fill="none" stroke={theme === "dark" ? "#000000" : "#ffffff"} viewBox="0 0 24 24">
-              {/* Antenna */}
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2v3" />
-              <circle cx="12" cy="2" r="1" fill={theme === "dark" ? "#000000" : "#ffffff"} />
-              {/* Head */}
-              <rect x="4" y="5" width="16" height="12" rx="2" strokeWidth={1.5} />
-              {/* Eyes */}
-              <circle cx="9" cy="11" r="1.5" fill={theme === "dark" ? "#000000" : "#ffffff"} />
-              <circle cx="15" cy="11" r="1.5" fill={theme === "dark" ? "#000000" : "#ffffff"} />
-              {/* Ears */}
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2 10v4M22 10v4" />
-              {/* Body hint */}
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 17v3M16 17v3" />
-            </svg>
-          </>
-        )}
+        {/* Icon */}
+        <svg
+          className={`${isMobile ? "w-5 h-5" : "w-6 h-6"} transition-transform duration-300 ease-out group-hover:rotate-12`}
+          fill="none"
+          stroke={theme === "dark" ? "#000000" : "#ffffff"}
+          viewBox="0 0 24 24"
+        >
+          {isOpen ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          )}
+        </svg>
       </button>
 
       {/* Image Lightbox Modal */}
