@@ -27,7 +27,7 @@ interface GitHubStats {
   error: string | null;
 }
 
-const GITHUB_USERNAME = "AndiIzzat";
+const GITHUB_USERNAME = "iashari";
 
 export default function GitHubStats() {
   const { theme } = useTheme();
