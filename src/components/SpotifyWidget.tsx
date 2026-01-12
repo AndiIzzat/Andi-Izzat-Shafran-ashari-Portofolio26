@@ -349,6 +349,8 @@ export default function SpotifyWidget() {
               >
                 <button
                   onClick={() => setShowEmbed(false)}
+                  aria-label="Show now playing"
+                  aria-pressed={!showEmbed}
                   className="px-2 py-1 rounded-full transition-all duration-300 ease-out hover:scale-105 active:scale-95"
                   style={{
                     backgroundColor: !showEmbed ? colors.spotify : "transparent",
@@ -360,6 +362,8 @@ export default function SpotifyWidget() {
                 </button>
                 <button
                   onClick={() => setShowEmbed(true)}
+                  aria-label="Show playlist"
+                  aria-pressed={showEmbed}
                   className="px-2 py-1 rounded-full transition-all duration-300 ease-out hover:scale-105 active:scale-95"
                   style={{
                     backgroundColor: showEmbed ? colors.spotify : "transparent",
@@ -530,6 +534,7 @@ export default function SpotifyWidget() {
                       onClick={() => setShowVolumeSlider(!showVolumeSlider)}
                       className="p-1.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 group"
                       style={{ backgroundColor: showVolumeSlider ? colors.bgSecondary : "transparent" }}
+                      aria-label={`Volume control: ${volume}%`}
                       title="Volume"
                     >
                       {volume === 0 ? (
@@ -557,6 +562,7 @@ export default function SpotifyWidget() {
                         max="100"
                         value={volume}
                         onChange={(e) => handleVolumeChange(Number(e.target.value))}
+                        aria-label="Volume slider"
                         className="flex-1 h-1 rounded-full appearance-none cursor-pointer"
                         style={{
                           background: `linear-gradient(to right, ${colors.spotify} 0%, ${colors.spotify} ${volume}%, ${colors.bgSecondary} ${volume}%, ${colors.bgSecondary} 100%)`,
@@ -635,6 +641,8 @@ export default function SpotifyWidget() {
                 <button
                   key={playlist.id}
                   onClick={() => setSelectedPlaylist(index)}
+                  aria-label={`Select playlist ${playlist.name}`}
+                  aria-pressed={selectedPlaylist === index}
                   className={`flex-1 rounded-lg font-medium transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isFullscreen ? "px-4 py-2 text-sm" : "px-2 py-1.5 text-xs"}`}
                   style={{
                     backgroundColor: selectedPlaylist === index ? colors.spotify : colors.bgSecondary,
@@ -648,18 +656,21 @@ export default function SpotifyWidget() {
               ))}
             </div>
 
-            {/* Spotify Embed */}
+            {/* Spotify Embed - Only load when widget is open to improve performance */}
             <div className="rounded-xl overflow-hidden flex-1 min-h-0">
-              <iframe
-                key={PLAYLISTS[selectedPlaylist].id}
-                src={`https://open.spotify.com/embed/playlist/${PLAYLISTS[selectedPlaylist].id}?utm_source=generator&theme=${theme === "dark" ? "0" : "1"}`}
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                style={{ borderRadius: "12px", minHeight: "152px" }}
-              ></iframe>
+              {isOpen && (
+                <iframe
+                  key={PLAYLISTS[selectedPlaylist].id}
+                  src={`https://open.spotify.com/embed/playlist/${PLAYLISTS[selectedPlaylist].id}?utm_source=generator&theme=${theme === "dark" ? "0" : "1"}`}
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  title={`Spotify Playlist: ${PLAYLISTS[selectedPlaylist].name}`}
+                  style={{ borderRadius: "12px", minHeight: "152px" }}
+                ></iframe>
+              )}
             </div>
           </div>
         </div>

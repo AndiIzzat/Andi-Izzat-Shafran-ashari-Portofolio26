@@ -29,9 +29,7 @@ const SpotifyWidget = dynamic(() => import("@/components/SpotifyWidget"), {
   loading: () => null,
 });
 
-const LoadingScreen = dynamic(() => import("@/components/LoadingScreen"), {
-  ssr: false,
-});
+// Loading screen removed to improve LCP - was blocking content for too long
 
 export default function Home() {
   const typedText = useTypewriter(
@@ -44,8 +42,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-neutral-950">
-      {/* Loading Screen */}
-      <LoadingScreen />
 
       {/* Navbar */}
       <Navbar />
