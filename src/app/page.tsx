@@ -147,8 +147,13 @@ export default function Home() {
                     {typedText}
                   </span>
                   <span
-                    className="w-0.5 h-6 ml-1 animate-pulse"
-                    style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26", willChange: "opacity" }}
+                    className="w-0.5 h-6 ml-1"
+                    style={{
+                      backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26",
+                      animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                      willChange: "opacity",
+                      transform: "translateZ(0)",
+                    }}
                   ></span>
                 </div>
               </FadeIn>
