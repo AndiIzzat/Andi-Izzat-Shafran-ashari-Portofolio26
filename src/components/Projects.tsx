@@ -96,7 +96,7 @@ export default function Projects() {
               onClick={() => setActiveCategory(category)}
               aria-label={`Filter projects by ${category}`}
               aria-pressed={activeCategory === category}
-              className="px-5 py-2 rounded-full text-sm tracking-wide transition-[transform,opacity,background-color,border-color] duration-300 border"
+              className="px-5 py-2 rounded-full text-sm tracking-wide transition-[transform,opacity] duration-300 border"
               style={{
                 backgroundColor: activeCategory === category
                   ? (theme === "dark" ? "#ffffff" : "#171717")
@@ -163,7 +163,7 @@ export default function Projects() {
                       {project.category}
                     </span>
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transform transition-[transform,opacity,background-color,border-color] duration-300 bg-white/20 backdrop-blur-sm ${
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transform transition-[transform,opacity] duration-300 bg-white/20 backdrop-blur-sm ${
                         hoveredProject === project.id
                           ? "rotate-0 scale-100 opacity-100"
                           : "-rotate-45 scale-75 opacity-0"
@@ -191,7 +191,7 @@ export default function Projects() {
                       {project.title}
                     </h3>
                     <p
-                      className={`mb-4 text-white/80 transition-[transform,opacity,background-color,border-color] duration-300 ${
+                      className={`mb-4 text-white/80 transition-[transform,opacity] duration-300 ${
                         hoveredProject === project.id
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-4"
@@ -205,7 +205,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className={`px-3 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm text-white transition-[transform,opacity,background-color,border-color] duration-300 ${
+                          className={`px-3 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm text-white transition-[transform,opacity] duration-300 ${
                             hoveredProject === project.id
                               ? "opacity-100 translate-y-0"
                               : "opacity-0 translate-y-2"
@@ -236,7 +236,7 @@ export default function Projects() {
         >
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full border transition-[transform,opacity,background-color,border-color] duration-300"
+            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full border transition-[transform,opacity] duration-300"
             style={{
               backgroundColor: theme === "dark" ? "#171717" : "#ffffff",
               borderColor: theme === "dark" ? "#262626" : "#e5e5e5",

@@ -104,10 +104,11 @@ export default function LoadingScreen() {
           style={{ backgroundColor: theme === "dark" ? "#262626" : "#e5e5e5" }}
         >
           <div
-            className="h-full rounded-full transition-all duration-200"
+            className="h-full w-full rounded-full origin-left"
             style={{
               backgroundColor: textColor,
-              width: `${Math.min(progress, 100)}%`
+              transform: `scaleX(${Math.min(progress, 100) / 100})`,
+              transition: "transform 0.2s ease-out",
             }}
           />
         </div>

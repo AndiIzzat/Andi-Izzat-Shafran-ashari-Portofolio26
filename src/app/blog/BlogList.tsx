@@ -55,7 +55,7 @@ export default function BlogList({ posts }: BlogListProps) {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div
-            className={`mb-12 transition-all duration-500 ${
+            className={`mb-12 transition-[transform,opacity] duration-500 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
@@ -73,7 +73,7 @@ export default function BlogList({ posts }: BlogListProps) {
           {/* Posts Grid */}
           {posts.length === 0 ? (
             <div
-              className={`text-center py-16 transition-all duration-500 delay-200 ${
+              className={`text-center py-16 transition-opacity duration-500 delay-200 ${
                 isVisible ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -84,14 +84,14 @@ export default function BlogList({ posts }: BlogListProps) {
               {posts.map((post, index) => (
                 <article
                   key={post.slug}
-                  className={`transition-all duration-500 ${
+                  className={`transition-[transform,opacity] duration-500 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <Link href={`/blog/${post.slug}`}>
                     <div
-                      className="group p-6 rounded-2xl transition-all duration-300 hover:scale-[1.01]"
+                      className="group p-6 rounded-2xl transition-transform duration-300 hover:scale-[1.01]"
                       style={{
                         backgroundColor: colors.bgCard,
                         border: `1px solid ${colors.border}`,
@@ -162,7 +162,7 @@ export default function BlogList({ posts }: BlogListProps) {
 
           {/* Back to Home */}
           <div
-            className={`mt-12 text-center transition-all duration-500 ${
+            className={`mt-12 text-center transition-opacity duration-500 ${
               isVisible ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDelay: "500ms" }}

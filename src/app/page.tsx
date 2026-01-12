@@ -37,7 +37,26 @@ const Projects = dynamic(() => import("@/components/Projects"));
 const Experience = dynamic(() => import("@/components/Experience"));
 const Achievement = dynamic(() => import("@/components/Achievement"));
 const Contact = dynamic(() => import("@/components/Contact"));
-const GitHubStats = dynamic(() => import("@/components/GitHubStats"));
+const GitHubStats = dynamic(() => import("@/components/GitHubStats"), {
+  loading: () => (
+    <section id="github" className="relative py-24 md:py-32">
+      <div className="max-w-5xl mx-auto px-8 md:px-12">
+        <div className="mb-12">
+          <span className="text-neutral-500 text-sm tracking-widest uppercase mb-3 block">
+            Open Source
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+            GitHub<span className="text-neutral-500">.</span>
+          </h2>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="w-8 h-8 border-2 border-neutral-700 border-t-transparent rounded-full animate-spin" />
+          <span className="ml-3 text-neutral-400">Loading GitHub stats...</span>
+        </div>
+      </div>
+    </section>
+  ),
+});
 const BlogSection = dynamic(() => import("@/components/BlogSection"));
 const BackToTop = dynamic(() => import("@/components/BackToTop"), { ssr: false });
 
