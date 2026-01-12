@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface GitHubUser {
   login: string;
@@ -31,7 +30,6 @@ const GITHUB_USERNAME = "iashari";
 
 export default function GitHubStats() {
   const { theme } = useTheme();
-  const { ref, isVisible } = useScrollAnimation<HTMLElement>();
   const [stats, setStats] = useState<GitHubStats>({
     user: null,
     totalStars: 0,
@@ -159,14 +157,10 @@ export default function GitHubStats() {
   ];
 
   return (
-    <section id="github" className="relative py-24 md:py-32" ref={ref}>
+    <section id="github" className="relative py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-8 md:px-12">
         {/* Section Header */}
-        <div
-          className={`mb-12 transition-[transform,opacity] duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="mb-12">
           <span style={{ color: colors.textLabel }} className="text-sm tracking-widest uppercase mb-3 block">
             Open Source
           </span>
@@ -178,9 +172,7 @@ export default function GitHubStats() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Profile Card */}
           <div
-            className={`p-6 rounded-2xl transition-[transform,opacity] duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className="p-6 rounded-2xl"
             style={{ backgroundColor: colors.bgCard, border: `1px solid ${colors.border}` }}
           >
             <div className="flex items-center gap-4 mb-6">
@@ -208,16 +200,13 @@ export default function GitHubStats() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
-              {statItems.map((stat, index) => (
+              {statItems.map((stat) => (
                 <div
                   key={stat.label}
-                  className={`p-4 rounded-xl text-center transition-[transform,opacity] duration-500 ${
-                    isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
-                  }`}
+                  className="p-4 rounded-xl text-center"
                   style={{
                     backgroundColor: colors.bg,
                     border: `1px solid ${colors.border}`,
-                    transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
                   }}
                 >
                   <div className="text-2xl font-bold" style={{ color: colors.text }}>
@@ -233,9 +222,7 @@ export default function GitHubStats() {
 
           {/* Languages Card */}
           <div
-            className={`p-6 rounded-2xl transition-[transform,opacity] duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className="p-6 rounded-2xl"
             style={{ backgroundColor: colors.bgCard, border: `1px solid ${colors.border}` }}
           >
             <h3 className="text-lg font-semibold mb-6" style={{ color: colors.text }}>
@@ -243,39 +230,36 @@ export default function GitHubStats() {
             </h3>
 
             <div className="space-y-4">
-              {stats.topLanguages.map((lang, index) => {
-                const maxCount = stats.topLanguages[0]?.count || 1;
-                const percentage = (lang.count / maxCount) * 100;
+              {stats.topLanguages.length > 0 ? (
+                stats.topLanguages.map((lang) => {
+                  const maxCount = stats.topLanguages[0]?.count || 1;
+                  const percentage = (lang.count / maxCount) * 100;
 
-                return (
-                  <div
-                    key={lang.name}
-                    className={`transition-[transform,opacity] duration-500 ${
-                      isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-5"
-                    }`}
-                    style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
-                  >
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium" style={{ color: colors.text }}>
-                        {lang.name}
-                      </span>
-                      <span className="text-sm" style={{ color: colors.textMuted }}>
-                        {lang.count} repos
-                      </span>
+                  return (
+                    <div key={lang.name}>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm font-medium" style={{ color: colors.text }}>
+                          {lang.name}
+                        </span>
+                        <span className="text-sm" style={{ color: colors.textMuted }}>
+                          {lang.count} repos
+                        </span>
+                      </div>
+                      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: colors.border }}>
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            backgroundColor: colors.accent,
+                            width: `${percentage}%`,
+                          }}
+                        />
+                      </div>
                     </div>
-                    <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: colors.border }}>
-                      <div
-                        className="h-full w-full rounded-full transition-transform duration-700 ease-out origin-left"
-                        style={{
-                          backgroundColor: colors.accent,
-                          transform: isVisible ? `scaleX(${percentage / 100})` : "scaleX(0)",
-                          transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
-                        }}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              ) : (
+                <p className="text-sm" style={{ color: colors.textMuted }}>No language data available</p>
+              )}
             </div>
 
             {/* GitHub Link */}
