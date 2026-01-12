@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -11,13 +13,25 @@ import Achievement from "@/components/Achievement";
 import Contact from "@/components/Contact";
 import GitHubStats from "@/components/GitHubStats";
 import BlogSection from "@/components/BlogSection";
-import ChatWidget from "@/components/ChatWidget";
-import SpotifyWidget from "@/components/SpotifyWidget";
-import LoadingScreen from "@/components/LoadingScreen";
 import BackToTop from "@/components/BackToTop";
 import { FadeIn, ScaleIn } from "@/components/PageTransition";
 import { useTypewriter } from "@/hooks/useScrollAnimation";
 import { useTheme } from "@/context/ThemeContext";
+
+// Dynamic imports for heavy components - load after initial render
+const ChatWidget = dynamic(() => import("@/components/ChatWidget"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const SpotifyWidget = dynamic(() => import("@/components/SpotifyWidget"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const LoadingScreen = dynamic(() => import("@/components/LoadingScreen"), {
+  ssr: false,
+});
 
 export default function Home() {
   const typedText = useTypewriter(
@@ -45,9 +59,11 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="home"
+        role="region"
+        aria-label="Introduction"
         className="relative z-10 min-h-screen flex items-center justify-center p-6"
       >
-        <main className="w-full max-w-4xl pt-16">
+        <main role="main" className="w-full max-w-4xl pt-16">
           {/* Horizontal layout */}
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             {/* Left side - Photo */}
@@ -61,10 +77,12 @@ export default function Home() {
                   <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-neutral-900 border border-neutral-800 overflow-hidden">
                     <Image
                       src="/profile2.jpeg"
-                      alt="A. Izzat Shafran Ashari"
+                      alt="A. Izzat Shafran Ashari - Graphic Designer and Full Stack Developer"
                       fill
+                      sizes="(max-width: 768px) 192px, 256px"
                       className="object-cover"
                       priority
+                      fetchPriority="high"
                     />
                   </div>
 

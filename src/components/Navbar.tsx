@@ -463,9 +463,10 @@ export default function Navbar() {
           >
             <Image
               src={theme === "dark" ? "/Logos/jat logo white.png" : "/Logos/jat logo black.png"}
-              alt="Jat Logo"
+              alt="Izzat Portfolio - Home"
               width={50}
               height={25}
+              sizes="50px"
               className="object-contain"
               priority
             />
