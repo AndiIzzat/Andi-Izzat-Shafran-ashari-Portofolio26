@@ -566,6 +566,18 @@ html.light ::selection {
   backface-visibility: hidden;
 }
 
+/* GPU-only bounce animation using transform */
+@keyframes bounce-gpu {
+  0%, 100% {
+    transform: translateY(-25%) translateZ(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0) translateZ(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
 .animate-pulse {
   will-change: opacity;
   transform: translateZ(0);

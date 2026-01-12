@@ -57,7 +57,12 @@ export default function BackToTop() {
       >
         <span>Back to top</span>
         <svg
-          className="w-3.5 h-3.5 animate-bounce"
+          className="w-3.5 h-3.5"
+          style={{
+            animation: "bounce-gpu 1s infinite",
+            willChange: "transform",
+            transform: "translateZ(0)",
+          }}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
