@@ -2,23 +2,24 @@
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Services from "@/components/Services";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Achievement from "@/components/Achievement";
-import Contact from "@/components/Contact";
-import GitHubStats from "@/components/GitHubStats";
-import BlogSection from "@/components/BlogSection";
-import BackToTop from "@/components/BackToTop";
 import { FadeIn, ScaleIn } from "@/components/PageTransition";
 import { useTypewriter } from "@/hooks/useScrollAnimation";
 import { useTheme } from "@/context/ThemeContext";
 
-// Dynamic imports for heavy components - load after initial render
+// Dynamic imports for below-the-fold components to reduce initial bundle
+const About = dynamic(() => import("@/components/About"));
+const Skills = dynamic(() => import("@/components/Skills"));
+const Services = dynamic(() => import("@/components/Services"));
+const Projects = dynamic(() => import("@/components/Projects"));
+const Experience = dynamic(() => import("@/components/Experience"));
+const Achievement = dynamic(() => import("@/components/Achievement"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const GitHubStats = dynamic(() => import("@/components/GitHubStats"));
+const BlogSection = dynamic(() => import("@/components/BlogSection"));
+const BackToTop = dynamic(() => import("@/components/BackToTop"), { ssr: false });
+
+// Dynamic imports for widgets - load after initial render
 const ChatWidget = dynamic(() => import("@/components/ChatWidget"), {
   ssr: false,
   loading: () => null,
@@ -28,8 +29,6 @@ const SpotifyWidget = dynamic(() => import("@/components/SpotifyWidget"), {
   ssr: false,
   loading: () => null,
 });
-
-// Loading screen removed to improve LCP - was blocking content for too long
 
 export default function Home() {
   const typedText = useTypewriter(
