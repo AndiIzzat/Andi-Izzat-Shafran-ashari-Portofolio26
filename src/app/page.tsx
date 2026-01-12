@@ -90,7 +90,7 @@ export default function Home() {
                       color: theme === "dark" ? "#a3a3a3" : "#5c574e",
                     }}
                   >
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ willChange: "opacity" }}></span>
                     Available for work
                   </div>
                 </div>
@@ -126,7 +126,7 @@ export default function Home() {
                   </span>
                   <span
                     className="w-0.5 h-6 ml-1 animate-pulse"
-                    style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26" }}
+                    style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#2d2a26", willChange: "opacity" }}
                   ></span>
                 </div>
               </FadeIn>
