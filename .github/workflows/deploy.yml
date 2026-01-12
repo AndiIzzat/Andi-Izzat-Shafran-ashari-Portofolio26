@@ -1,11 +1,13 @@
 name: Deploy to Vercel
 
+# DISABLED - Using Vercel's native GitHub integration instead
+# Vercel CLI has rate limits on free tier (api-upload-free error)
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   branches: [main]
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
