@@ -1717,6 +1717,7 @@ export default function ChatWidget() {
                 onClick={() => setIsOpen(false)}
                 className="p-1.5 -ml-1 mr-1 rounded-lg transition-colors"
                 style={{ color: colors.textSecondary }}
+                aria-label="Close chat"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1744,6 +1745,7 @@ export default function ChatWidget() {
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="icon-btn dropdown-btn w-9 h-9 rounded-lg transition-colors hover:bg-opacity-10 flex items-center justify-center"
                 style={{ color: colors.textSecondary }}
+                aria-label="Open menu"
               >
                 {/* Default: vertical dots */}
                 <svg className="icon-default absolute w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1789,6 +1791,7 @@ export default function ChatWidget() {
                 onClick={() => { setIsOpen(false); setIsFullscreen(false); }}
                 className="close-btn w-9 h-9 rounded-lg transition-colors hover:bg-opacity-10 flex items-center justify-center"
                 style={{ color: colors.textSecondary }}
+                aria-label="Close chat"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
@@ -1802,7 +1805,7 @@ export default function ChatWidget() {
         {showSearch && (
           <div className="absolute inset-0 z-40 flex flex-col" style={{ backgroundColor: colors.bg }}>
             <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: `1px solid ${colors.border}` }}>
-              <button onClick={() => { setShowSearch(false); setSearchQuery(""); }} style={{ color: colors.textMuted }}>
+              <button onClick={() => { setShowSearch(false); setSearchQuery(""); }} style={{ color: colors.textMuted }} aria-label="Close search">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -1843,7 +1846,7 @@ export default function ChatWidget() {
         {showStats && (
           <div className="absolute inset-0 z-40 flex flex-col" style={{ backgroundColor: colors.bg }}>
             <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: `1px solid ${colors.border}` }}>
-              <button onClick={() => setShowStats(false)} style={{ color: colors.textMuted }}>
+              <button onClick={() => setShowStats(false)} style={{ color: colors.textMuted }} aria-label="Close statistics">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -1877,7 +1880,7 @@ export default function ChatWidget() {
         {showSettings && (
           <div className="absolute inset-0 z-40 flex flex-col" style={{ backgroundColor: colors.bg }}>
             <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: `1px solid ${colors.border}` }}>
-              <button onClick={() => setShowSettings(false)} style={{ color: colors.textMuted }}>
+              <button onClick={() => setShowSettings(false)} style={{ color: colors.textMuted }} aria-label="Close settings">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -1996,7 +1999,7 @@ export default function ChatWidget() {
         {showFavorites && (
           <div className="absolute inset-0 z-40 flex flex-col" style={{ backgroundColor: colors.bg }}>
             <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: `1px solid ${colors.border}` }}>
-              <button onClick={() => setShowFavorites(false)} style={{ color: colors.textMuted }}>
+              <button onClick={() => setShowFavorites(false)} style={{ color: colors.textMuted }} aria-label="Close favorites">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -2032,7 +2035,7 @@ export default function ChatWidget() {
             <div className="px-4 py-3 flex flex-col gap-2" style={{ borderBottom: `1px solid ${colors.border}` }}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <button onClick={() => setShowGallery(false)} style={{ color: colors.textMuted }}>
+                  <button onClick={() => setShowGallery(false)} style={{ color: colors.textMuted }} aria-label="Close gallery">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                     </svg>
@@ -3198,6 +3201,7 @@ export default function ChatWidget() {
               className="group relative w-9 h-9 flex items-center justify-center rounded-lg transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
               style={{ color: uploadedImage ? colors.accent : colors.textMuted }}
               title="Upload image"
+              aria-label="Upload image"
             >
               {/* Default icon */}
               <svg className="w-5 h-5 absolute transition-all duration-300 ease-out opacity-100 group-hover:opacity-0 group-hover:scale-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3233,6 +3237,7 @@ export default function ChatWidget() {
               className={`group relative w-9 h-9 flex items-center justify-center rounded-lg transition-transform duration-300 ease-out hover:scale-105 active:scale-95 ${isListening ? "animate-pulse" : ""}`}
               style={{ backgroundColor: isListening ? colors.accent : "transparent", color: isListening ? colors.accentText : colors.textMuted }}
               title={isListening ? "Stop listening" : "Voice input"}
+              aria-label={isListening ? "Stop listening" : "Voice input"}
             >
               {/* Default icon */}
               <svg className={`w-5 h-5 absolute transition-all duration-300 ease-out ${isListening ? "opacity-100" : "opacity-100 group-hover:opacity-0 group-hover:scale-75"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3249,6 +3254,7 @@ export default function ChatWidget() {
               onClick={() => setShowEmoji(!showEmoji)}
               className="group relative w-9 h-9 flex items-center justify-center rounded-lg transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
               style={{ color: showEmoji ? colors.accent : colors.textMuted }}
+              aria-label="Toggle emoji picker"
             >
               {/* Default icon */}
               <svg className="w-5 h-5 absolute transition-all duration-300 ease-out opacity-100 group-hover:opacity-0 group-hover:scale-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3267,6 +3273,7 @@ export default function ChatWidget() {
               className="group relative w-9 h-9 flex items-center justify-center rounded-lg transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
               style={{ color: showImageOptions || referenceImage || negativePrompt || isAnimationMode || selectedAspectRatio !== "1:1" || selectedStyle || selectedColorMood ? colors.accent : colors.textMuted }}
               title="Image Studio - Style, Colors, Templates & More"
+              aria-label="Image generation options"
             >
               {/* Default icon - settings/sliders */}
               <svg className="w-5 h-5 absolute transition-all duration-300 ease-out opacity-100 group-hover:opacity-0 group-hover:scale-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3317,6 +3324,7 @@ export default function ChatWidget() {
               disabled={!inputValue.trim() && !uploadedImage}
               className="group relative w-9 h-9 flex items-center justify-center rounded-lg transition-transform duration-300 ease-out hover:scale-105 active:scale-95 disabled:opacity-30 disabled:hover:scale-100"
               style={{ color: (inputValue.trim() || uploadedImage) ? colors.accent : colors.textMuted }}
+              aria-label="Send message"
             >
               {/* Default icon */}
               <svg className="w-5 h-5 absolute transition-all duration-300 ease-out opacity-100 group-hover:opacity-0 group-hover:scale-75 group-disabled:opacity-100 group-disabled:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
