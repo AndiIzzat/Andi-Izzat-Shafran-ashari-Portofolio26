@@ -476,10 +476,33 @@ html.light .shadow-lg {
   transform: translateY(-4px);
 }
 
-/* Focus ring for accessibility */
+/* Focus ring for accessibility - global styles for all interactive elements */
 .focus-ring:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
+}
+
+/* Global focus-visible styles for better accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+html.dark a:focus-visible,
+html.dark button:focus-visible,
+html.dark [role="button"]:focus-visible {
+  outline-color: #ffffff;
+}
+
+html.light a:focus-visible,
+html.light button:focus-visible,
+html.light [role="button"]:focus-visible {
+  outline-color: #2d2a26;
 }
 
 /* Custom scrollbar styles */
