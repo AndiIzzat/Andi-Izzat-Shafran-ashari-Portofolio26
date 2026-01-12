@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
-import PageTransition from "@/components/PageTransition";
 import StructuredData from "@/components/StructuredData";
 
 const geistSans = Geist({
@@ -109,9 +108,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider>
-          <PageTransition>
-            {children}
-          </PageTransition>
+          {children}
         </ThemeProvider>
       </body>
     </html>

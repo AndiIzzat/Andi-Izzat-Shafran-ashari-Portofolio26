@@ -3,9 +3,31 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
-import { FadeIn, ScaleIn } from "@/components/PageTransition";
 import { useTypewriter } from "@/hooks/useScrollAnimation";
 import { useTheme } from "@/context/ThemeContext";
+
+// CSS-only animation wrapper - no framer-motion needed
+function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  return (
+    <div
+      className="animate-fade-in-up"
+      style={{ animationDelay: `${delay}s`, animationFillMode: "both" }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ScaleIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  return (
+    <div
+      className="animate-scale-in"
+      style={{ animationDelay: `${delay}s`, animationFillMode: "both" }}
+    >
+      {children}
+    </div>
+  );
+}
 
 // Dynamic imports for below-the-fold components to reduce initial bundle
 const About = dynamic(() => import("@/components/About"));
