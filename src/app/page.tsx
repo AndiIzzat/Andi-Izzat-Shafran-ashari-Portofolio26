@@ -84,7 +84,7 @@ export default function Home() {
           {/* Horizontal layout */}
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             {/* Left side - Photo */}
-            <ScaleIn delay={0}>
+            <ScaleIn delay={0.2}>
               <div className="flex-shrink-0">
                 <div className="relative group">
                   {/* Outer glow */}
@@ -100,8 +100,6 @@ export default function Home() {
                       className="object-cover"
                       priority
                       fetchPriority="high"
-                      loading="eager"
-                      quality={75}
                     />
                   </div>
 
