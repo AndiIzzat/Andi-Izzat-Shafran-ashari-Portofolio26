@@ -1,73 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
-const projects = [
-  {
-    id: 1,
-    slug: "seeds-movie-website",
-    title: "SeEDS Movie Website",
-    category: "Web Design",
-    description: "Mood-based movie streaming website that recommends films based on how you feel. Features mood selection, watchlists, and personalized recommendations.",
-    tags: ["Web Design", "Streaming", "UI"],
-    year: "2024",
-    image: "/project footage/Car rental project school 2/Seeds movie website.png",
-  },
-  {
-    id: 2,
-    slug: "kanesia-ecommerce",
-    title: "Kanesia E-Commerce",
-    category: "UI/UX Design",
-    description: "Mobile e-commerce app for handmade fabric crafts from Makassar, Indonesia. Features product categories, recommendations, and seamless shopping experience.",
-    tags: ["Figma", "E-Commerce", "Mobile"],
-    year: "2024",
-    image: "/project footage/Car rental project school 2/Kanesia e-com.png",
-  },
-  {
-    id: 3,
-    slug: "lumiere-photography",
-    title: "Lumière Photography",
-    category: "Web Design",
-    description: "Professional photography services website with gallery showcase, testimonials, and elegant dark theme design.",
-    tags: ["Web Design", "Photography", "UI"],
-    year: "2024",
-    image: "/project footage/Car rental project school 2/lumiere photography.png",
-  },
-  {
-    id: 4,
-    slug: "sporty-car-rentals",
-    title: "Sporty Car Rentals",
-    category: "Web Design",
-    description: "Sports car rental website featuring luxury vehicles with clean teal and white design.",
-    tags: ["Web Design", "Automotive", "UI"],
-    year: "2023",
-    image: "/project footage/Car rental project school 2/Rent Car Project v1.png",
-  },
-  {
-    id: 5,
-    slug: "sports-car-rental-v2",
-    title: "Sports Car Rental v2",
-    category: "Web Design",
-    description: "Modern dark-themed car rental website for sports cars in Indonesia with sleek interface and premium feel.",
-    tags: ["Web Design", "Dark Theme", "UI"],
-    year: "2024",
-    image: "/project footage/Car rental project school 2/rent car project v2.png",
-  },
-];
-
-const categories = ["All", "UI/UX Design", "Web Design"];
-
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-
   return (
     <div className="min-h-screen bg-neutral-950">
       <Navbar />
@@ -97,82 +33,46 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-3 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                aria-label={`Filter by ${category}`}
-                aria-pressed={activeCategory === category}
-                className={`px-5 py-2 rounded-full text-sm tracking-wide transition-all duration-300 ${
-                  activeCategory === category
-                    ? "bg-white text-neutral-900"
-                    : "bg-neutral-900 text-neutral-400 border border-neutral-800 hover:border-neutral-600 hover:text-white"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.slug}`}
-                className="group relative rounded-2xl overflow-hidden"
-              >
-                <div className="relative aspect-[4/3] bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden group-hover:border-neutral-700 transition-all duration-300">
-                  {/* Project Image */}
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} - ${project.category} project`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
+          {/* Upcoming Projects Card */}
+          <div className="max-w-2xl mx-auto">
+            <div className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 p-12 md:p-16 text-center">
+              {/* Icon */}
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-neutral-800 flex items-center justify-center">
+                <svg
+                  className="w-10 h-10 text-neutral-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
                   />
+                </svg>
+              </div>
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
+              {/* Text */}
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Upcoming Projects
+              </h3>
+              <p className="text-neutral-400 text-lg max-w-md mx-auto">
+                Exciting projects are currently in the works. Stay tuned for updates!
+              </p>
 
-                  {/* Content */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                    <div className="flex justify-between items-start">
-                      <span className="text-white/70 text-xs tracking-widest uppercase">
-                        {project.category}
-                      </span>
-                      <span className="text-white/50 text-sm">{project.year}</span>
-                    </div>
-
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:translate-x-1 transition-transform duration-300">
-                        {project.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 rounded-md bg-white/20 backdrop-blur-sm text-white text-xs"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
+                <svg viewBox="0 0 100 100" fill="currentColor" className="text-white">
+                  <circle cx="50" cy="50" r="40" />
+                </svg>
+              </div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 opacity-5">
+                <svg viewBox="0 0 100 100" fill="currentColor" className="text-white">
+                  <rect x="20" y="20" width="60" height="60" rx="10" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </main>

@@ -20,9 +20,7 @@ interface NowPlayingData {
 
 // Your Spotify playlists
 const PLAYLISTS = [
-  { id: "0ZkyENdDjmcer6cTglOvFE", name: "🌟🦩" },
-  { id: "0FJpRxubp4gAdYFd2xukzG", name: "cœur" },
-  { id: "0blyqQir5x3BwYWzB8kn5O", name: "....-.....--.." },
+  { id: "0blyqQir5x3BwYWzB8kn5O", name: "My Playlist" },
 ];
 
 export default function SpotifyWidget() {
@@ -635,26 +633,28 @@ export default function SpotifyWidget() {
 
           {/* Playlist Embed View */}
           <div className={`${!showEmbed && isConfigured ? "hidden" : ""} flex-1 flex flex-col min-h-0`}>
-            {/* Playlist Selector */}
-            <div className="flex gap-2 mb-3">
-              {PLAYLISTS.map((playlist, index) => (
-                <button
-                  key={playlist.id}
-                  onClick={() => setSelectedPlaylist(index)}
-                  aria-label={`Select playlist ${playlist.name}`}
-                  aria-pressed={selectedPlaylist === index}
-                  className={`flex-1 rounded-lg font-medium transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isFullscreen ? "px-4 py-2 text-sm" : "px-2 py-1.5 text-xs"}`}
-                  style={{
-                    backgroundColor: selectedPlaylist === index ? colors.spotify : colors.bgSecondary,
-                    color: selectedPlaylist === index ? "#fff" : colors.textMuted,
-                    boxShadow: selectedPlaylist === index ? `0 4px 12px ${colors.spotify}40` : "none",
-                    transform: selectedPlaylist === index ? "translateY(-1px)" : "none",
-                  }}
-                >
-                  {playlist.name}
-                </button>
-              ))}
-            </div>
+            {/* Playlist Selector - only show if multiple playlists */}
+            {PLAYLISTS.length > 1 && (
+              <div className="flex gap-2 mb-3">
+                {PLAYLISTS.map((playlist, index) => (
+                  <button
+                    key={playlist.id}
+                    onClick={() => setSelectedPlaylist(index)}
+                    aria-label={`Select playlist ${playlist.name}`}
+                    aria-pressed={selectedPlaylist === index}
+                    className={`flex-1 rounded-lg font-medium transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isFullscreen ? "px-4 py-2 text-sm" : "px-2 py-1.5 text-xs"}`}
+                    style={{
+                      backgroundColor: selectedPlaylist === index ? colors.spotify : colors.bgSecondary,
+                      color: selectedPlaylist === index ? "#fff" : colors.textMuted,
+                      boxShadow: selectedPlaylist === index ? `0 4px 12px ${colors.spotify}40` : "none",
+                      transform: selectedPlaylist === index ? "translateY(-1px)" : "none",
+                    }}
+                  >
+                    {playlist.name}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Spotify Embed - Only load when widget is open to improve performance */}
             <div className="rounded-xl overflow-hidden flex-1 min-h-0">
@@ -665,10 +665,12 @@ export default function SpotifyWidget() {
                   width="100%"
                   height="100%"
                   frameBorder="0"
+                  allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                   title={`Spotify Playlist: ${PLAYLISTS[selectedPlaylist].name}`}
-                  style={{ borderRadius: "12px", minHeight: "152px" }}
+                  className="rounded-xl"
+                  style={{ minHeight: "352px" }}
                 ></iframe>
               )}
             </div>

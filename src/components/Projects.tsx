@@ -1,71 +1,37 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 
-const projects = [
+const upcomingProjects = [
   {
     id: 1,
-    slug: "seeds-movie-website",
-    title: "SeEDS Movie Website",
+    title: "Upcoming Project",
     category: "Web Design",
-    description: "Mood-based movie streaming website that recommends films based on how you feel. Features mood selection, watchlists, and personalized recommendations.",
-    tags: ["Web Design", "Streaming", "UI"],
-    image: "/project footage/Car rental project school 2/Seeds movie website.png",
+    description: "An exciting web design project is currently in development.",
+    tags: ["Web Design", "UI/UX", "Development"],
   },
   {
     id: 2,
-    slug: "kanesia-ecommerce",
-    title: "Kanesia E-Commerce",
+    title: "Upcoming Project",
     category: "UI/UX Design",
-    description: "Mobile e-commerce app for handmade fabric crafts from Makassar, Indonesia. Features product categories, recommendations, and seamless shopping experience.",
-    tags: ["Figma", "E-Commerce", "Mobile"],
-    image: "/project footage/Car rental project school 2/Kanesia e-com.png",
+    description: "A new UI/UX design project will be revealed soon.",
+    tags: ["Figma", "UI/UX", "Mobile"],
   },
   {
     id: 3,
-    slug: "lumiere-photography",
-    title: "Lumière Photography",
-    category: "Web Design",
-    description: "Professional photography services website with gallery showcase, testimonials, and elegant dark theme design.",
-    tags: ["Web Design", "Photography", "UI"],
-    image: "/project footage/Car rental project school 2/lumiere photography.png",
-  },
-  {
-    id: 4,
-    slug: "sporty-car-rentals",
-    title: "Sporty Car Rentals",
-    category: "Web Design",
-    description: "Sports car rental website featuring luxury vehicles with clean teal and white design.",
-    tags: ["Web Design", "Automotive", "UI"],
-    image: "/project footage/Car rental project school 2/Rent Car Project v1.png",
-  },
-  {
-    id: 5,
-    slug: "sports-car-rental-v2",
-    title: "Sports Car Rental v2",
-    category: "Web Design",
-    description: "Modern dark-themed car rental website for sports cars in Indonesia with sleek interface and premium feel.",
-    tags: ["Web Design", "Dark Theme", "UI"],
-    image: "/project footage/Car rental project school 2/rent car project v2.png",
+    title: "Upcoming Project",
+    category: "Mobile App",
+    description: "A mobile application project is in the works.",
+    tags: ["Mobile", "App Design", "UI"],
   },
 ];
 
-const categories = ["All", "UI/UX Design", "Web Design"];
-
 export default function Projects() {
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
-  const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const { theme } = useTheme();
-
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
 
   return (
     <section id="projects" className="relative py-24 md:py-32" ref={ref}>
@@ -84,43 +50,12 @@ export default function Projects() {
           </h2>
         </div>
 
-        {/* Category Filter */}
-        <div
-          className={`flex flex-wrap gap-3 mb-12 transition-[transform,opacity] duration-700 delay-100 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              aria-label={`Filter projects by ${category}`}
-              aria-pressed={activeCategory === category}
-              className="px-5 py-2 rounded-full text-sm tracking-wide transition-[transform,opacity] duration-300 border"
-              style={{
-                backgroundColor: activeCategory === category
-                  ? (theme === "dark" ? "#ffffff" : "#171717")
-                  : (theme === "dark" ? "#171717" : "#ffffff"),
-                color: activeCategory === category
-                  ? (theme === "dark" ? "#171717" : "#ffffff")
-                  : (theme === "dark" ? "#a3a3a3" : "#525252"),
-                borderColor: activeCategory === category
-                  ? "transparent"
-                  : (theme === "dark" ? "#262626" : "#e5e5e5"),
-              }}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {filteredProjects.map((project, index) => (
-            <Link
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {upcomingProjects.map((project, index) => (
+            <div
               key={project.id}
-              href={`/projects/${project.slug}`}
-              className={`group relative rounded-2xl overflow-hidden transition-[transform,opacity] duration-700 block ${
+              className={`group relative rounded-2xl overflow-hidden transition-[transform,opacity] duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: isVisible ? `${(index + 2) * 100}ms` : "0ms" }}
@@ -135,14 +70,12 @@ export default function Projects() {
                   borderColor: theme === "dark" ? "#262626" : "#e5e5e5",
                 }}
               >
-                {/* Project Image */}
-                <Image
-                  src={project.image}
-                  alt={`${project.title} - ${project.category} project by Izzat`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
+                {/* Placeholder Background */}
+                <div
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-110"
+                  style={{
+                    backgroundColor: theme === "dark" ? "#0a0a0a" : "#f5f5f5",
+                  }}
                 />
 
                 {/* Overlay */}
@@ -162,36 +95,15 @@ export default function Projects() {
                     <span className="text-sm tracking-widest uppercase text-white/70">
                       {project.category}
                     </span>
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transform transition-[transform,opacity] duration-300 bg-white/20 backdrop-blur-sm ${
-                        hoveredProject === project.id
-                          ? "rotate-0 scale-100 opacity-100"
-                          : "-rotate-45 scale-75 opacity-0"
-                      }`}
-                    >
-                      <svg
-                        className="w-5 h-5 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </div>
                   </div>
 
                   {/* Bottom - Info */}
                   <div>
-                    <h3 className="text-2xl font-bold mb-2 text-white group-hover:translate-x-2 transition-transform duration-300">
+                    <h3 className="text-xl font-bold mb-2 text-white group-hover:translate-x-2 transition-transform duration-300">
                       {project.title}
                     </h3>
                     <p
-                      className={`mb-4 text-white/80 transition-[transform,opacity] duration-300 ${
+                      className={`mb-3 text-sm text-white/80 transition-[transform,opacity] duration-300 ${
                         hoveredProject === project.id
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-4"
@@ -205,7 +117,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className={`px-3 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm text-white transition-[transform,opacity] duration-300 ${
+                          className={`px-2 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm text-white transition-[transform,opacity] duration-300 ${
                             hoveredProject === project.id
                               ? "opacity-100 translate-y-0"
                               : "opacity-0 translate-y-2"
@@ -224,40 +136,8 @@ export default function Projects() {
                   style={{ borderColor: theme === "dark" ? "#404040" : "#d4d4d4" }}
                 ></div>
               </div>
-            </Link>
+            </div>
           ))}
-        </div>
-
-        {/* View All Button */}
-        <div
-          className={`mt-12 text-center transition-[transform,opacity] duration-700 delay-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full border transition-[transform,opacity] duration-300"
-            style={{
-              backgroundColor: theme === "dark" ? "#171717" : "#ffffff",
-              borderColor: theme === "dark" ? "#262626" : "#e5e5e5",
-              color: theme === "dark" ? "#ffffff" : "#171717",
-            }}
-          >
-            <span>View All Projects</span>
-            <svg
-              className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </Link>
         </div>
       </div>
     </section>
